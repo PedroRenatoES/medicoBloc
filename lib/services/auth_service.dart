@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  static const String _baseUrl = "https://4a43-189-28-68-207.ngrok-free.app/api/Auth";
+  static const String _baseUrl = "https://95bb-189-28-68-207.ngrok-free.app/api/Auth";
   
   Future<bool> register(Map<String, dynamic> body) async {
     final response = await http.post(

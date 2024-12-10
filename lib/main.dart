@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_medico_api_web_1/pantallas/inicioSesion.dart';
-import 'package:flutter_medico_api_web_1/pantallas/pantallaAgendarCita.dart';
-import 'package:flutter_medico_api_web_1/pantallas/pantallaPrincipal.dart';
-import 'package:flutter_medico_api_web_1/pantallas/verCitasPantalla.dart';
-import 'package:flutter_medico_api_web_1/pantallas/verHistorialMedico.dart';
-import 'package:flutter_medico_api_web_1/pantallas/verMedicosPantalla.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_medico_api_web_1/bloc/ver_citas_bloc.dart';
+import 'package:flutter_medico_api_web_1/ui/agendar_cita_screen.dart';
+import 'package:flutter_medico_api_web_1/ui/historial_medico_screen.dart';
+import 'package:flutter_medico_api_web_1/ui/login_screen.dart';
+import 'package:flutter_medico_api_web_1/ui/mainScreen.dart';
+import 'package:flutter_medico_api_web_1/ui/ver_citas_screen.dart';
+import 'package:flutter_medico_api_web_1/ui/ver_medicos_screen.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -25,7 +28,12 @@ class MyApp extends StatelessWidget {
           case '/mainScreen':
             return MaterialPageRoute(builder: (context) => MainScreen(pacienteId: args!));
           case '/verCitas':
-            return MaterialPageRoute(builder: (context) => VerCitasScreen(pacienteId: args!));
+            return MaterialPageRoute(
+              builder: (context) => BlocProvider(
+                create: (context) => VerCitasBloc(),
+                child: VerCitasScreen(pacienteId: args!),
+              ),
+            );
           case '/agendarCita':
             return MaterialPageRoute(builder: (context) => AgendarCitaScreen(pacienteId: args!));
           case '/historialMedico':
